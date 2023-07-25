@@ -12,6 +12,7 @@ import com.example.test.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
+    lateinit var button: Button
 
 
     @SuppressLint("WrongViewCast")
