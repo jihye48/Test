@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dday_list">
+        <item>오늘</item>
+        <item>처음 만난 날</item>
+        <item>10일</item>
+        <item>50일</item>
+        <item>100일</item>
+        <item>1년</item>
+    </string-array>
+</resources>
