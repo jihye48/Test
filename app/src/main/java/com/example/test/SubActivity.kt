@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class SubActivity : AppCompatActivity() {
@@ -26,11 +28,10 @@ class SubActivity : AppCompatActivity() {
         var day = intent.getStringExtra("day")!!.toString()
         //startDay텍스트 지정
         tV1.text = "$year. $month. $day."
-
+        //String 날짜 형식 정의
         val df = SimpleDateFormat("yyyyMMdd")
         //시작날짜 형변환
         val sd = df.parse("$year$month$day").time
-        //현재 날짜 정보 받기
         val today = Calendar.getInstance().apply{
             set(Calendar.HOUR_OF_DAY,0)
             set(Calendar.MINUTE,0)
@@ -43,13 +44,13 @@ class SubActivity : AppCompatActivity() {
         //현재날짜-시작날짜
         tV2.text = "${(today - sd) / (24 * 60 * 60 * 1000) + 1}일"
 
-
+        //현재 날짜 정보 받기
         val calendar = Calendar.getInstance()
         val year1 = calendar.get(Calendar.YEAR)
         val month1 = calendar.get(Calendar.MONTH)
         val dayOfMonth1 = calendar.get(Calendar.DAY_OF_MONTH)
-        var date = Calendar.getInstance()
-        var day1 = "$year1.$month1.$dayOfMonth1"
+        val date:Date=Date()
+        calendar.time=date
 
         // (res/values/array.xml)에 만들어둔 dday_list가져오기
         var ddayList=resources.getStringArray(R.array.dday_list)
@@ -64,18 +65,42 @@ class SubActivity : AppCompatActivity() {
                 dday1.text="선택해주세요"
             }
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                var year=year.toInt()
+                var month=month.toInt()
+                var day=day.toInt()
                 when(position){
                     0 -> {  //오늘
-                        dday1.text="$year1.$month1.$dayOfMonth1"
+                        dday1.text="$year1.$month1. $dayOfMonth1"
                     }
                     1 -> {  //처음만난날
                         dday1.text="$year. $month. $day."
                     }
                     2->{    //10일
-
+                        day+=10
+                        when(month){
+                            1,3,5,7,8,10,12 -> {
+                                if(day>31){
+                                    month+=1
+                                    day-=31
+                                }
+                            }
+                            2,4,6,9,11 -> {
+                                if(day>30){
+                                    month+=1
+                                    day-=30
+                                }
+                            }
+                            2->{
+                                if(day>28){
+                                    month+=1
+                                    day-=28
+                                }
+                            }
+                        }
+                        dday1.text="$year. $month. $day"
                     }
                     3->{    //50일
-
+                        dday1.text="$year. $month. ${day.toInt()+50}"
                     }
                 }
             }
@@ -89,5 +114,7 @@ class SubActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.actionmenu, menu)
         return true
     }
+
+
 
 }
