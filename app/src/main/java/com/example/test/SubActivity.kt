@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -69,8 +71,9 @@ class SubActivity : AppCompatActivity() {
                 var month=month.toInt()
                 var day=day.toInt()
                 when(position){
-                    0 -> {  //오늘
-                        dday1.text="$year1.$month1. $dayOfMonth1"
+                    0 -> {  //오늘  (month가 1 작게 나와서 1 더함)
+                        dday1.text="$year1.${month1+1}. $dayOfMonth1"
+
                     }
                     1 -> {  //처음만난날
                         dday1.text="$year. $month. $day."
@@ -100,19 +103,48 @@ class SubActivity : AppCompatActivity() {
                         dday1.text="$year. $month. $day"
                     }
                     3->{    //50일
-                        dday1.text="$year. $month. ${day.toInt()+50}"
+                        dday1.text="$year. $month. $day"
+                    }
+                    4->{    //100일
+
+                    }
+                    5->{    //1년
+                        year+=1
+                        dday1.text="$year. $month. $day"
+                        if((year1==year)&&(month1==month)&&(dayOfMonth1==day))
+                            Toast.makeText(this@SubActivity, "1주년을 축하합니다!",Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
     }
+    /*현재 날짜로부터 더하기
+    fun afterDate(date: String, day: Int, pattern: String = "yyyy. MM. dd"): String {
+        val format = SimpleDateFormat(pattern, Locale.getDefault())
 
+        val calendar = Calendar.getInstance()
+        format.parse(date)?.let { calendar.time = it }
+        calendar.add(Calendar.DAY_OF_YEAR, day)
 
+        return format.format(calendar.time)
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.actionmenu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.action_calendar->{
+
+            }
+            R.id.action_brush->{
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
