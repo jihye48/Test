@@ -15,8 +15,8 @@ class SubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sub)
 
-        val tV1 = findViewById<TextView>(R.id.startDay)
-
+        val tV1 = findViewById<TextView>(R.id.startDay) //시작날짜텍스트뷰
+        //메인에서 imgBtn클릭할때 보낸 인텐트 받기
         var year = intent.getStringExtra("year")!!.toString()
         var month = intent.getStringExtra("month")!!.toString()
         var day = intent.getStringExtra("day")!!.toString()
@@ -33,7 +33,7 @@ class SubActivity : AppCompatActivity() {
         }.time.time
 
         val tV2 = findViewById<TextView>(R.id.dayN)
-
+        //함께한지 n일 텍스트뷰
         tV2.text = "${(today - sd) / (24 * 60 * 60 * 1000) + 1}일"
 
 
