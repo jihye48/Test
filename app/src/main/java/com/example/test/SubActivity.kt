@@ -7,17 +7,22 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class SubActivity : AppCompatActivity() {
+
+    lateinit var plusButton:FloatingActionButton
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +60,7 @@ class SubActivity : AppCompatActivity() {
         val date:Date=Date()
         calendar.time=date
 
+
         // (res/values/array.xml)에 만들어둔 dday_list가져오기
         var ddayList=resources.getStringArray(R.array.dday_list)
         val myAdapter=ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,ddayList)
@@ -74,7 +80,6 @@ class SubActivity : AppCompatActivity() {
                 when(position){
                     0 -> {  //오늘  (month가 1 작게 나와서 1 더함)
                         dday1.text="$year1.${month1+1}. $dayOfMonth1"
-
                     }
                     1 -> {  //처음만난날
                         dday1.text="$year. $month. $day."
@@ -107,7 +112,7 @@ class SubActivity : AppCompatActivity() {
                         dday1.text="$year. $month. $day"
                     }
                     4->{    //100일
-
+                        dday1.text="$year. $month. $day"
                     }
                     5->{    //1년
                         year+=1
@@ -118,6 +123,12 @@ class SubActivity : AppCompatActivity() {
                 }
             }
         }
+        plusButton=findViewById(R.id.plusButton)
+        plusButton.setOnClickListener{
+
+        }
+
+
     }
     /*현재 날짜로부터 더하기
     fun afterDate(date: String, day: Int, pattern: String = "yyyy. MM. dd"): String {
@@ -130,6 +141,7 @@ class SubActivity : AppCompatActivity() {
         return format.format(calendar.time)
     }*/
 
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.actionmenu, menu)
@@ -137,14 +149,16 @@ class SubActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var layoutParmas:WindowManager.LayoutParams=WindowManager.LayoutParams()
+        layoutParmas.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND
+        layoutParmas.dimAmount=0.8f
+        getWindow().setAttributes(layoutParmas)
         when(item?.itemId){
             R.id.action_calendar->{
-                intent = Intent(this, PopupActivity1::class.java)
-                startActivityForResult(intent,1)
+
             }
             R.id.action_brush->{
-                intent = Intent(this, PopupActivity2::class.java)
-                startActivityForResult(intent,1)
+
             }
         }
         return super.onOptionsItemSelected(item)
