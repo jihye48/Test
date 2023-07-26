@@ -5,9 +5,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/main_logo_background"
         android:label="SAI"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/main_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
