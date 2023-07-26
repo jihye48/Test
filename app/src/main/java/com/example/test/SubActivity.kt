@@ -78,13 +78,16 @@ class SubActivity : AppCompatActivity() {
                 var month=month.toInt()
                 var day=day.toInt()
                 when(position){
-                    0 -> {  //오늘  (month가 1 작게 나와서 1 더함)
+                    //오늘  (month가 1 작게 나와서 1 더함)
+                    0 -> {
                         dday1.text="$year1.${month1+1}. $dayOfMonth1"
                     }
-                    1 -> {  //처음만난날
+                    //처음만난날
+                    1 -> {
                         dday1.text="$year. $month. $day."
                     }
-                    2->{    //10일
+                    //10일
+                    2->{
                         day+=10
                         when(month){
                             1,3,5,7,8,10,12 -> {
@@ -108,16 +111,19 @@ class SubActivity : AppCompatActivity() {
                         }
                         dday1.text="$year. $month. $day"
                     }
-                    3->{    //50일
+                    //50일
+                    3->{
                         dday1.text="$year. $month. $day"
                     }
-                    4->{    //100일
+                    //100일
+                    4->{
                         dday1.text="$year. $month. $day"
                     }
-                    5->{    //1년
+                    //1년
+                    5->{
                         year+=1
                         dday1.text="$year. $month. $day"
-                        if((year1==year)&&(month1==month)&&(dayOfMonth1==day))
+                        if((year1==year)&&(month1==month-1)&&(dayOfMonth1==day))
                             Toast.makeText(this@SubActivity, "1주년을 축하합니다!",Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -125,6 +131,7 @@ class SubActivity : AppCompatActivity() {
         }
         plusButton=findViewById(R.id.plusButton)
         plusButton.setOnClickListener{
+            Toast.makeText(this@SubActivity, "fab버튼 클릭",Toast.LENGTH_SHORT).show()
 
         }
 
