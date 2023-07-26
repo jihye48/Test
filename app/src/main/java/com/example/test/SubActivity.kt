@@ -1,6 +1,7 @@
 package com.example.test
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -138,10 +139,12 @@ class SubActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item?.itemId){
             R.id.action_calendar->{
-
+                intent = Intent(this, PopupActivity1::class.java)
+                startActivityForResult(intent,1)
             }
             R.id.action_brush->{
-
+                intent = Intent(this, PopupActivity2::class.java)
+                startActivityForResult(intent,1)
             }
         }
         return super.onOptionsItemSelected(item)
