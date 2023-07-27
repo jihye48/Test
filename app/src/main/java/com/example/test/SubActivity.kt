@@ -94,30 +94,8 @@ class SubActivity : AppCompatActivity() {
                     }
                     //10일
                     2 -> {
-                        day += 10
-                        when (month) {
-                            1, 3, 5, 7, 8, 10, 12 -> {
-                                if (day > 31) {
-                                    month += 1
-                                    day -= 31
-                                }
-                            }
-
-                            4, 6, 9, 11 -> {
-                                if (day > 30) {
-                                    month += 1
-                                    day -= 30
-                                }
-                            }
-
-                            2 -> {
-                                if (day > 28) {
-                                    month += 1
-                                    day -= 28
-                                }
-                            }
-                        }
-                        dday1.text = "$year. $month. $day"
+                        var monthday=getten(day,month)
+                        dday1.text="$year. $monthday"
                     }
                     //50일
                     3 -> {
@@ -126,7 +104,7 @@ class SubActivity : AppCompatActivity() {
                     }
                     //100일
                     4 -> {
-
+                        var monthday=getfifty(day,month)
                     }
                     //1년
                     5 -> {
@@ -142,11 +120,44 @@ class SubActivity : AppCompatActivity() {
         plusButton = findViewById(R.id.plusButton)
         plusButton.setOnClickListener {
             Toast.makeText(this@SubActivity, "fab버튼 클릭", Toast.LENGTH_SHORT).show()
-
+            var intent=Intent(this,PopupActivity1::class.java)
+            startActivity(intent)
         }
 
 
     }
+
+    fun getten(day:Int, month: Int):String{
+        var month=month
+        var day=day
+        day += 10
+        when (month) {
+            1, 3, 5, 7, 8, 10, 12 -> {
+                if (day > 31) {
+                    month += 1
+                    day -= 31
+                }
+            }
+
+            4, 6, 9, 11 -> {
+                if (day > 30) {
+                    month += 1
+                    day -= 30
+                }
+            }
+
+            2 -> {
+                if (day > 28) {
+                    month += 1
+                    day -= 28
+                }
+            }
+        }
+        var strMonth=month.toString()
+        var strDay=day.toString()
+        return "$strMonth. $strDay"
+    }
+
     fun getfifty(day:Int,month:Int):String {
         var month=month
         var day=day
