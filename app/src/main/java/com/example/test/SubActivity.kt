@@ -193,11 +193,21 @@ class SubActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.actionmenu, menu)
         return true
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item!!.itemId){
+            R.id.action_calendar->{
+                val intent = Intent(this, calActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_brush->{
+                val intent = Intent(this, brushActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
 
-
+        return super.onOptionsItemSelected(item)
     }
-
-
-
 
 }
