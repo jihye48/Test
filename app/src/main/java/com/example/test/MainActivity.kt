@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.widget.Button
 import android.widget.DatePicker
 import com.example.test.databinding.ActivityMainBinding
@@ -37,11 +36,11 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_main)
 //
 //    }
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val menuInflater = menuInflater
-        menuInflater.inflate(R.menu.actionmenu, menu)
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        val menuInflater = menuInflater
+//        menuInflater.inflate(R.menu.actionmenu, menu)
+//        return true
+//    }
 
 
 

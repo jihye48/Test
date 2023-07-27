@@ -43,7 +43,7 @@
         android:layout_marginEnd="105dp"
         android:layout_marginBottom="404dp"
         android:autofillHints="no"
-        android:hint="@string/edithint"
+        android:hint="@string/editHint"
         android:inputType="none"
         android:maxLength="50"
         android:fontFamily="@font/kyobohandwriting"
