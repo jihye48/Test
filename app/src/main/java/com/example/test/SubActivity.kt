@@ -103,7 +103,7 @@ class SubActivity : AppCompatActivity() {
                                 }
                             }
 
-                            2, 4, 6, 9, 11 -> {
+                            4, 6, 9, 11 -> {
                                 if (day > 30) {
                                     month += 1
                                     day -= 30
@@ -121,6 +121,34 @@ class SubActivity : AppCompatActivity() {
                     }
                     //50일
                     3 -> {
+                        when (month) {
+                            1, 3, 5, 7, 8, 10, 12 -> {
+                                month+=1    //31일 더하기
+                                day+=19     //19일 더하기
+                                if (day > 31) {
+                                    month += 1
+                                    day -= 31
+                                }
+                            }
+
+                            4, 6, 9, 11 -> {
+                                month+=1    //30일 더하기
+                                day+=20     //20일 더하기
+                                if (day > 30) {
+                                    month += 1
+                                    day -= 30
+                                }
+                            }
+
+                            2 -> {
+                                month+=1    //28일 더하기
+                                day+=22     //22일 더하기
+                                if (day > 28) {
+                                    month += 1
+                                    day -= 28
+                                }
+                            }
+                        }
                         dday1.text = "$year. $month. $day"
                     }
                     //100일
@@ -166,22 +194,38 @@ class SubActivity : AppCompatActivity() {
         return true
     }
 
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item!!.itemId){
+//            R.id.action_calendar->{
+//                val intent = Intent(this, calActivity::class.java)
+//                startActivity(intent)
+//                return true
+//            }
+//            R.id.action_brush->{
+//                val intent = Intent(this, brushActivity::class.java)
+//                startActivity(intent)
+//                return true
+//            }
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item!!.itemId){
-            R.id.action_calendar -> {
-                val intent = Intent(this,calActivity::class.java)
-                startActivity(intent)
-                return true
+        var layoutParmas:WindowManager.LayoutParams=WindowManager.LayoutParams()
+        layoutParmas.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND
+        layoutParmas.dimAmount=0.8f
+        getWindow().setAttributes(layoutParmas)
+        when(item?.itemId){
+            R.id.action_calendar->{
+
             }
-            R.id.action_brush -> {
-                val intent = Intent(this,brushActivity::class.java)
-                startActivity(intent)
-                return true
+            R.id.action_brush->{
+
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
 

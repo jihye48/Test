@@ -17,9 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".PopupActivity2"
+            android:theme="@android:style/Theme.Dialog"
             android:exported="false" />
         <activity
             android:name=".PopupActivity1"
+            android:theme="@android:style/Theme.Dialog"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
