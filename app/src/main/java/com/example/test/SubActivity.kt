@@ -166,38 +166,22 @@ class SubActivity : AppCompatActivity() {
         return true
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when(item!!.itemId){
-//            R.id.action_calendar->{
-//                val intent = Intent(this, calActivity::class.java)
-//                startActivity(intent)
-//                return true
-//            }
-//            R.id.action_brush->{
-//                val intent = Intent(this, brushActivity::class.java)
-//                startActivity(intent)
-//                return true
-//            }
-//        }
-//
-//        return super.onOptionsItemSelected(item)
-//    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var layoutParmas:WindowManager.LayoutParams=WindowManager.LayoutParams()
-        layoutParmas.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND
-        layoutParmas.dimAmount=0.8f
-        getWindow().setAttributes(layoutParmas)
-        when(item?.itemId){
-            R.id.action_calendar->{
-
+        when(item!!.itemId){
+            R.id.action_calendar -> {
+                val intent = Intent(this,calActivity::class.java)
+                startActivity(intent)
+                return true
             }
-            R.id.action_brush->{
-
+            R.id.action_brush -> {
+                val intent = Intent(this,brushActivity::class.java)
+                startActivity(intent)
+                return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 
 
