@@ -121,39 +121,12 @@ class SubActivity : AppCompatActivity() {
                     }
                     //50일
                     3 -> {
-                        when (month) {
-                            1, 3, 5, 7, 8, 10, 12 -> {
-                                month+=1    //31일 더하기
-                                day+=19     //19일 더하기
-                                if (day > 31) {
-                                    month += 1
-                                    day -= 31
-                                }
-                            }
-
-                            4, 6, 9, 11 -> {
-                                month+=1    //30일 더하기
-                                day+=20     //20일 더하기
-                                if (day > 30) {
-                                    month += 1
-                                    day -= 30
-                                }
-                            }
-
-                            2 -> {
-                                month+=1    //28일 더하기
-                                day+=22     //22일 더하기
-                                if (day > 28) {
-                                    month += 1
-                                    day -= 28
-                                }
-                            }
-                        }
-                        dday1.text = "$year. $month. $day"
+                        var monthday=getfifty(day,month)
+                        dday1.text="$year. $monthday"
                     }
                     //100일
                     4 -> {
-                        dday1.text = "$year. $month. $day"
+
                     }
                     //1년
                     5 -> {
@@ -174,20 +147,41 @@ class SubActivity : AppCompatActivity() {
 
 
     }
+    fun getfifty(day:Int,month:Int):String {
+        var month=month
+        var day=day
+        when (month) {
+            1, 3, 5, 7, 8, 10, 12 -> {
+                month+=1    //31일 더하기
+                day+=19     //19일 더하기
+                if (day > 31) {
+                    month += 1
+                    day -= 31
+                }
+            }
 
+            4, 6, 9, 11 -> {
+                month+=1    //30일 더하기
+                day+=20     //20일 더하기
+                if (day > 30) {
+                    month += 1
+                    day -= 30
+                }
+            }
 
-
-    /*현재 날짜로부터 더하기
-    fun afterDate(date: String, day: Int, pattern: String = "yyyy. MM. dd"): String {
-        val format = SimpleDateFormat(pattern, Locale.getDefault())
-
-        val calendar = Calendar.getInstance()
-        format.parse(date)?.let { calendar.time = it }
-        calendar.add(Calendar.DAY_OF_YEAR, day)
-
-        return format.format(calendar.time)
-    }*/
-
+            2 -> {
+                month+=1    //28일 더하기
+                day+=22     //22일 더하기
+                if (day > 28) {
+                    month += 1
+                    day -= 28
+                }
+            }
+        }
+        var strMonth=month.toString()
+        var strDay=day.toString()
+        return "$strMonth. $strDay"
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.actionmenu, menu)
