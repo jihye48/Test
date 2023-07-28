@@ -37,13 +37,11 @@ class PopupActivity1 : AppCompatActivity() {
                 var year=datePicker.year
                 var month=datePicker.month+1
                 var day=datePicker.dayOfMonth
-                //var date=year.toString()+month.toString()+day.toString()
+                var date=year.toString()+month.toString()+day.toString()
                 var things=edtText.text.toString()
                 //saveData(things,date)
                 intent=Intent(this,SubActivity::class.java).apply{
-                    putExtra("year",year.toString())
-                    putExtra("month",month.toString())
-                    putExtra("day",day.toString())
+                    putExtra("date",date)
                     putExtra("things",things)
                 }
                 setResult(RESULT_OK)

@@ -256,15 +256,13 @@ class SubActivity : AppCompatActivity() {
     private fun setResultNext(){
         activityResultLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode==RESULT_OK){
-                var year=it.data?.getStringExtra("year")
-                var month=it.data?.getStringExtra("month")
-                var day=it.data?.getStringExtra("day")
+                var date=intent.getStringExtra("date")
                 var things=intent.getStringExtra("things")
 
                 var celebrate=findViewById<TextView>(R.id.celebrate)
                 var celebratethings=findViewById<TextView>(R.id.celabratethings)
-                celebrate.text="$year. $month. $day"
-                celebratethings.text="$things"
+                celebrate.text=date
+                celebratethings.text=things
             }
         }
     }
