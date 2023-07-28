@@ -62,12 +62,25 @@ class SubActivity : AppCompatActivity() {
         val date = Date()
         calendar.time = date
 
+        setResultNext()
+        plusButton = findViewById(R.id.plusButton)
+        plusButton.setOnClickListener {
+            var intent=Intent(this,PopupActivity1::class.java)
+            activityResultLauncher.launch(intent)
+        }
+
         // (res/values/array.xml)에 만들어둔 dday_list가져오기
         var ddayList = resources.getStringArray(R.array.dday_list)
         val myAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ddayList)
         var spinner1: Spinner = findViewById(R.id.spinner1)
+        var spinner2:Spinner=findViewById(R.id.spinner2)
+        var spinner3:Spinner=findViewById(R.id.spinner3)
         var dday1: TextView = findViewById(R.id.dday1)
+        var dday2: TextView = findViewById(R.id.dday2)
+        var dday3: TextView = findViewById(R.id.dday3)
         spinner1.adapter = myAdapter
+        spinner2.adapter = myAdapter
+        spinner3.adapter = myAdapter
 
         //spinner1 선택 리스너
         spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -88,52 +101,159 @@ class SubActivity : AppCompatActivity() {
 
                 when (position) {
 
-                    //오늘
-                    0 -> {
-                        dday1.text="$year. $month. $day"
-                    }
                     //처음만난날
-                    1 -> {
+                    0 -> {
                         dday1.text="$intMetYear. $intMetMonth. $intMetDay"
                     }
                     //10일
-                    2 -> {
+                    1 -> {
                         mathCalendar.add(Calendar.DAY_OF_MONTH,10)
                         dday1.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
                     }
                     //50일
-                    3 -> {
+                    2 -> {
                         mathCalendar.add(Calendar.DAY_OF_MONTH,50)
                         dday1.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
                     }
                     //100일
-                    4 -> {
+                    3 -> {
                         mathCalendar.add(Calendar.DAY_OF_MONTH,100)
                         dday1.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
                     }
                     //1년
-                    5 -> {
+                    4 -> {
                         intMetYear+=1
                         dday1.text="$intMetYear. $intMetMonth. $intMetDay"
-                        if((year==intMetYear)&&(month==intMetMonth)&&(day==intMetDay))
-                            Toast.makeText(this@SubActivity, "1주년을 축하합니다!", Toast.LENGTH_SHORT).show()
                     }
                     //1000일
-                    6 -> {
+                    5 -> {
                         mathCalendar.add(Calendar.DAY_OF_MONTH,1000)
                         dday1.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
-                        if ((year == mathCalendar.get(Calendar.YEAR)) && (month == mathCalendar.get(Calendar.MONTH)) && (day==mathCalendar.get(Calendar.DAY_OF_MONTH)))
-                            Toast.makeText(this@SubActivity, "100일을 축하합니다!", Toast.LENGTH_SHORT).show()
                     }
                     //2000일
-                    7 -> {
+                    6 -> {
                         mathCalendar.add(Calendar.DAY_OF_MONTH,2000)
-                        if ((year == mathCalendar.get(Calendar.YEAR)) && (month == mathCalendar.get(Calendar.MONTH)) && (day==mathCalendar.get(Calendar.DAY_OF_MONTH)))
-                            Toast.makeText(this@SubActivity, "200일을 축하합니다!", Toast.LENGTH_SHORT).show()
+                        dday1.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
                     }
                 }
             }
         }
+        //spinner2 선택 리스너
+        spinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                var intMetYear = metYear.toInt()
+                var intMetMonth = metMonth.toInt()
+                var intMetDay = metDay.toInt()
+
+                var mathCalendar:Calendar= Calendar.getInstance()
+                mathCalendar.set(intMetYear,intMetMonth,intMetDay)
+
+                when (position) {
+
+                    //처음만난날
+                    0 -> {
+                        dday1.text="$intMetYear. $intMetMonth. $intMetDay"
+                    }
+                    //10일
+                    1 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,10)
+                        dday2.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //50일
+                    2 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,50)
+                        dday2.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //100일
+                    3 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,100)
+                        dday2.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //1년
+                    4 -> {
+                        intMetYear+=1
+                        dday2.text="$intMetYear. $intMetMonth. $intMetDay"
+                    }
+                    //1000일
+                    5 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,1000)
+                        dday2.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //2000일
+                    6 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,2000)
+                        dday2.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                }
+            }
+        }
+        //spinner3 선택 리스너
+        spinner3.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                var intMetYear = metYear.toInt()
+                var intMetMonth = metMonth.toInt()
+                var intMetDay = metDay.toInt()
+
+                var mathCalendar:Calendar= Calendar.getInstance()
+                mathCalendar.set(intMetYear,intMetMonth,intMetDay)
+
+                when (position) {
+
+                    //처음만난날
+                    0 -> {
+                        dday3.text="$intMetYear. $intMetMonth. $intMetDay"
+                    }
+                    //10일
+                    1 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,10)
+                        dday3.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //50일
+                    2 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,50)
+                        dday3.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //100일
+                    3 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,100)
+                        dday3.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //1년
+                    4 -> {
+                        intMetYear+=1
+                        dday3.text="$intMetYear. $intMetMonth. $intMetDay"
+                    }
+                    //1000일
+                    5 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,1000)
+                        dday3.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                    //2000일
+                    6 -> {
+                        mathCalendar.add(Calendar.DAY_OF_MONTH,2000)
+                        dday3.text="${mathCalendar.get(Calendar.YEAR)}.${mathCalendar.get(Calendar.MONTH)}.${mathCalendar.get(Calendar.DAY_OF_MONTH)}."
+                    }
+                }
+            }
+        }
+
+
+    }
+    private fun setResultNext(){
         activityResultLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if(it.resultCode==RESULT_OK){
                 var year=it.data?.getStringExtra("year")
@@ -147,12 +267,6 @@ class SubActivity : AppCompatActivity() {
                 celebratethings.text="$things"
             }
         }
-        plusButton = findViewById(R.id.plusButton)
-        plusButton.setOnClickListener {
-            var intent=Intent(this,PopupActivity1::class.java)
-            activityResultLauncher.launch(intent)
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -41,9 +41,10 @@ class PopupActivity1 : AppCompatActivity() {
                 var things=edtText.text.toString()
                 //saveData(things,date)
                 intent=Intent(this,SubActivity::class.java).apply{
-                    putExtra("year",year)
-                    putExtra("month",month)
-                    putExtra("day",day)
+                    putExtra("year",year.toString())
+                    putExtra("month",month.toString())
+                    putExtra("day",day.toString())
+                    putExtra("things",things)
                 }
                 setResult(RESULT_OK)
                 if(!isFinishing)
@@ -57,43 +58,6 @@ class PopupActivity1 : AppCompatActivity() {
             finish()
         }
 
-    }
-
-    private fun saveData(date:String,things:String){
-        val pref=this.getPreferences(0)
-        val editor=pref.edit()
-
-        editor.putString("date",date).putString("things",things)
-        Toast.makeText(this,"기념일이 저장되었습니다",Toast.LENGTH_SHORT).show()
-        finish()
-        loadData()
-    }
-
-    private fun loadData(){
-
-        val pref=this.getPreferences(0)
-        val date=pref.getString("date",null)
-        val things=pref.getString("date",null)
-
-        if(date!=null&&things!=null){
-
-            var calendar: Calendar = Calendar.getInstance()
-            var parse_date: Date ?=null
-            var stringtodate:SimpleDateFormat = SimpleDateFormat("yyyyMMdd")
-
-            try{
-                parse_date=stringtodate.parse(date)
-                calendar.time=parse_date
-            }catch(e:Exception){}
-
-            var year=calendar.get(Calendar.YEAR)
-            var month=calendar.get(Calendar.MONTH)
-            var day=calendar.get(Calendar.DAY_OF_MONTH)
-
-            intent= Intent()
-
-
-        }
     }
 
 }
