@@ -124,7 +124,6 @@ class SubActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
     }
 
     fun getten(day:Int, month: Int):String{

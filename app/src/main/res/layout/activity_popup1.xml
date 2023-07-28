@@ -35,7 +35,7 @@
             android:id="@+id/datepicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:datePickerMode="spinner" />
+            android:datePickerMode="calendar" />
     </LinearLayout>
 
     <LinearLayout
