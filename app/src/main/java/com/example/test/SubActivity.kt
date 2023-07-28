@@ -14,6 +14,8 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -23,6 +25,7 @@ import java.util.*
 class SubActivity : AppCompatActivity() {
 
     lateinit var plusButton: FloatingActionButton
+    lateinit var activityResultLauncher:ActivityResultLauncher<Intent>
 
     @SuppressLint("SetTextI18n", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,10 +134,23 @@ class SubActivity : AppCompatActivity() {
                 }
             }
         }
+        activityResultLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if(it.resultCode==RESULT_OK){
+                var year=it.data?.getStringExtra("year")
+                var month=it.data?.getStringExtra("month")
+                var day=it.data?.getStringExtra("day")
+                var things=intent.getStringExtra("things")
+
+                var celebrate=findViewById<TextView>(R.id.celebrate)
+                var celebratethings=findViewById<TextView>(R.id.celabratethings)
+                celebrate.text="$year. $month. $day"
+                celebratethings.text="$things"
+            }
+        }
         plusButton = findViewById(R.id.plusButton)
         plusButton.setOnClickListener {
             var intent=Intent(this,PopupActivity1::class.java)
-            startActivity(intent)
+            activityResultLauncher.launch(intent)
         }
 
     }

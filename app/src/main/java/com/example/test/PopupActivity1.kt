@@ -1,5 +1,6 @@
 package com.example.test
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Button
@@ -22,7 +23,6 @@ class PopupActivity1 : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
-        loadData()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup1)
 
@@ -37,9 +37,17 @@ class PopupActivity1 : AppCompatActivity() {
                 var year=datePicker.year
                 var month=datePicker.month+1
                 var day=datePicker.dayOfMonth
-                var date=year.toString()+month.toString()+day.toString()
+                //var date=year.toString()+month.toString()+day.toString()
                 var things=edtText.text.toString()
-                saveData(things,date)
+                //saveData(things,date)
+                intent=Intent(this,SubActivity::class.java).apply{
+                    putExtra("year",year)
+                    putExtra("month",month)
+                    putExtra("day",day)
+                }
+                setResult(RESULT_OK)
+                if(!isFinishing)
+                    finish()
             }
 
         }
@@ -63,8 +71,6 @@ class PopupActivity1 : AppCompatActivity() {
 
     private fun loadData(){
 
-        var celebrate=findViewById<TextView>(R.id.celebrate)
-        var celebratethings=findViewById<TextView>(R.id.celabratethings)
         val pref=this.getPreferences(0)
         val date=pref.getString("date",null)
         val things=pref.getString("date",null)
@@ -84,8 +90,9 @@ class PopupActivity1 : AppCompatActivity() {
             var month=calendar.get(Calendar.MONTH)
             var day=calendar.get(Calendar.DAY_OF_MONTH)
 
-            celebrate.text="$year. $month. $day"
-            celebratethings.text="$things"
+            intent= Intent()
+
+
         }
     }
 

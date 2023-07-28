@@ -18,6 +18,7 @@
 
         <activity
             android:name=".PopupActivity1"
+            android:enableOnBackInvokedCallback="true"
             android:theme="@style/create"
             android:exported="false" />
         <activity
