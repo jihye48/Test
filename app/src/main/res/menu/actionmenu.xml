@@ -10,10 +10,4 @@
         android:title="calendar"
         android:icon="@drawable/calendar_icon"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/action_brush"
-        android:title="brush"
-        android:icon="@drawable/brush_icon"
-        app:showAsAction="always" />
 </menu>

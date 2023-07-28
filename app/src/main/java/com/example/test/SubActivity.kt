@@ -204,11 +204,6 @@ class SubActivity : AppCompatActivity() {
                 startActivity(intent)
                 return true
             }
-            R.id.action_brush->{
-                val intent = Intent(this, brushActivity::class.java)
-                startActivity(intent)
-                return true
-            }
         }
 
         return super.onOptionsItemSelected(item)
