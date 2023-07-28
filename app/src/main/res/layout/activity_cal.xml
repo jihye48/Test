@@ -69,6 +69,7 @@
         android:background="@null"
         android:fontFamily="@font/kyobohandwriting"
         android:hint="@string/editHint"
+        android:gravity="center_horizontal"
         android:inputType="none"
         android:maxHeight="20dp"
         android:maxLength="50"
