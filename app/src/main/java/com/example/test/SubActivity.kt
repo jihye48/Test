@@ -135,7 +135,6 @@ class SubActivity : AppCompatActivity() {
         }
         plusButton = findViewById(R.id.plusButton)
         plusButton.setOnClickListener {
-            Toast.makeText(this@SubActivity, "fab버튼 클릭", Toast.LENGTH_SHORT).show()
             var intent=Intent(this,PopupActivity1::class.java)
             startActivity(intent)
         }
