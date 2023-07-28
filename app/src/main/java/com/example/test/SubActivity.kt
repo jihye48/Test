@@ -114,6 +114,22 @@ class SubActivity : AppCompatActivity() {
                             Toast.makeText(this@SubActivity, "1주년을 축하합니다!", Toast.LENGTH_SHORT)
                                 .show()
                     }
+                    //2년
+                    6 -> {
+                        year += 2
+                        dday1.text = "$year. $month. $day"
+                        if ((year1 == year) && (month1 == month - 1) && (dayOfMonth1 == day))
+                            Toast.makeText(this@SubActivity, "2주년을 축하합니다!", Toast.LENGTH_SHORT)
+                                .show()
+                    }
+                    //3년
+                    7 -> {
+                        year += 3
+                        dday1.text = "$year. $month. $day"
+                        if ((year1 == year) && (month1 == month - 1) && (dayOfMonth1 == day))
+                            Toast.makeText(this@SubActivity, "3주년을 축하합니다!", Toast.LENGTH_SHORT)
+                                .show()
+                    }
                 }
             }
         }
