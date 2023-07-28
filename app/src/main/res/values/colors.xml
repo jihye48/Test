@@ -6,4 +6,5 @@
     <color name="yellow2">#FFE176</color>
     <color name="grey">#787878</color>
     <color name="pink">#FF8282</color>
+    <color name="dialogColor">#A6333333</color>
 </resources>

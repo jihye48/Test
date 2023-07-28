@@ -5,4 +5,5 @@
         <item name="colorControlHighlight">@color/pink</item>
         <item name="colorAccent">@color/yellow2</item>
     </style>
+
 </resources>
