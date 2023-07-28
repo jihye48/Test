@@ -1,11 +1,14 @@
 package com.example.test
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.TextView
 import com.example.test.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +29,9 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("month",(dataPicker.month+1).toString().padStart(n,'0'))
             intent.putExtra("day",dataPicker.dayOfMonth.toString().padStart(n,'0'))
             startActivity(intent)
+
         }
+
     }
 
 

@@ -43,10 +43,11 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_tool_bar"
         app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@drawable/view" />
+        app:srcCompat="@drawable/textmessage" />
 
     <ImageView
         android:id="@+id/imageView"
